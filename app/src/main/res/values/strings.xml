@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">Catalogue Movie</string>
+    <string name="hint_search_movies">Cari film ..</string>
+    <string name="btn_search">Cari</string>
+    <string name="hint_no_movies">Film tidak ditemukan, coba pencarian lainnya</string>
+    <string name="text_vote">Vote</string>
+    <string name="text_popularity">Popularity</string>
 </resources>

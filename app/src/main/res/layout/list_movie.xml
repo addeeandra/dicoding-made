@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:layout_margin="32dp">
+
+    <ImageView
+        android:id="@+id/iv_movie_preview"
+        android:layout_width="64dp"
+        android:layout_height="88dp"
+        android:layout_marginEnd="16dp"
+        android:background="#f0f0f0" />
+
+    <TextView
+        android:id="@+id/tv_movie_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/iv_movie_preview"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        tools:text="Captain America Civil War" />
+
+    <TextView
+        android:id="@+id/tv_movie_overview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_movie_title"
+        android:layout_marginTop="8dp"
+        android:layout_toEndOf="@id/iv_movie_preview"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textSize="14sp"
+        tools:text="Following the events of amazing world we conducted to" />
+
+    <TextView
+        android:id="@+id/tv_movie_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_movie_overview"
+        android:layout_marginTop="4dp"
+        android:layout_toEndOf="@id/iv_movie_preview"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textSize="14sp"
+        tools:text="Wednesday, Apr 27, 2018" />
+
+
+</RelativeLayout>

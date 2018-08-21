@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <ImageView
+        android:id="@+id/iv_movie_preview"
+        android:layout_width="144dp"
+        android:layout_height="200dp"
+        android:layout_marginEnd="16dp"
+        android:background="#f0f0f0"
+        android:scaleType="centerCrop" />
+
+    <TextView
+        android:id="@+id/tv_movie_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/iv_movie_preview"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        tools:text="Captain America Civil War" />
+
+    <TextView
+        android:id="@+id/tv_movie_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_movie_title"
+        android:layout_marginTop="4dp"
+        android:layout_toEndOf="@id/iv_movie_preview"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textSize="14sp"
+        tools:text="Wednesday, Apr 27, 2018" />
+
+    <TextView
+        android:id="@+id/tv_movie_vote_caption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_movie_date"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_toEndOf="@id/iv_movie_preview"
+        android:text="@string/text_vote"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_movie_vote_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_movie_vote_caption"
+        android:layout_toEndOf="@id/iv_movie_preview"
+        android:textSize="18sp"
+        tools:text="8.4" />
+
+    <TextView
+        android:id="@+id/tv_movie_popularity_caption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_movie_vote_value"
+        android:layout_marginTop="16dp"
+        android:layout_toEndOf="@id/iv_movie_preview"
+        android:text="@string/text_popularity"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_movie_popularity_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_movie_popularity_caption"
+        android:layout_toEndOf="@id/iv_movie_preview"
+        android:textSize="18sp"
+        tools:text="8.4" />
+
+    <TextView
+        android:id="@+id/tv_movie_overview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/iv_movie_preview"
+        android:layout_marginTop="16dp"
+        android:paddingEnd="32dp"
+        android:textSize="14sp"
+        tools:text="Following the events of amazing world we conducted to" />
+
+</RelativeLayout>
