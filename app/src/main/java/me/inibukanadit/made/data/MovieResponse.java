@@ -4,7 +4,9 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class SearchResponse<T> {
+import me.inibukanadit.made.data.model.Movie;
+
+public class MovieResponse {
 
     @SerializedName("page")
     int page;
@@ -16,6 +18,6 @@ public class SearchResponse<T> {
     int totalPages;
 
     @SerializedName("results")
-    List<T> results;
+    List<Movie> results;
 
 }

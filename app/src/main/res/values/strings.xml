@@ -1,8 +1,13 @@
 <resources>
-    <string name="app_name">Catalogue Movie</string>
-    <string name="hint_search_movies">Cari film ..</string>
-    <string name="btn_search">Cari</string>
-    <string name="hint_no_movies">Film tidak ditemukan, coba pencarian lainnya</string>
+    <string name="app_name">Movies Catalogue</string>
+    <string name="hint_no_movies">Movies not available</string>
     <string name="text_vote">Vote</string>
     <string name="text_popularity">Popularity</string>
+
+    <string name="now_playing">Now Playing</string>
+    <string name="upcoming">Upcoming</string>
+    <string name="btn_detail">Detail</string>
+    <string name="btn_share">Share</string>
+    <string name="search">Search</string>
+    <string name="hint_search_movies">Search movies ..</string>
 </resources>

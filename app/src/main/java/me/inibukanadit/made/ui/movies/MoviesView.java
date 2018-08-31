@@ -1,10 +1,11 @@
-package me.inibukanadit.made;
+package me.inibukanadit.made.ui.movies;
 
 import java.util.List;
 
 import me.inibukanadit.made.data.model.Movie;
+import me.inibukanadit.made.ui.base.MvpView;
 
-public interface MainView {
+public interface MoviesView extends MvpView {
 
     void showMovies(List<Movie> movieList);
 

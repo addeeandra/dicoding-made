@@ -3,7 +3,6 @@ package me.inibukanadit.made.data;
 import java.util.List;
 
 import io.reactivex.Observable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 import me.inibukanadit.made.BuildConfig;
@@ -19,6 +18,7 @@ public class MovieDbApi {
     private static final String HOST = "api.themoviedb.org";
     private static final String IMAGE_HOST = "image.tmdb.org";
     private static final String API_KEY = BuildConfig.API_KEY;
+    private static final String DEFAULT_LANG = "en-US";
 
     private MovieDbService mService;
 
@@ -41,12 +41,36 @@ public class MovieDbApi {
 
     public Observable<List<Movie>> search(String keyword) {
         return mService
-                .search(API_KEY, "en-US", keyword)
+                .search(API_KEY, DEFAULT_LANG, keyword)
                 .subscribeOn(Schedulers.io())
-                .map(new Function<SearchResponse<Movie>, List<Movie>>() {
+                .map(new Function<MovieResponse, List<Movie>>() {
                     @Override
-                    public List<Movie> apply(SearchResponse<Movie> movieSearchResponse) throws Exception {
-                        return movieSearchResponse.results;
+                    public List<Movie> apply(MovieResponse movieResponse) throws Exception {
+                        return movieResponse.results;
+                    }
+                });
+    }
+
+    public Observable<List<Movie>> upcoming() {
+        return mService
+                .upcoming(API_KEY, DEFAULT_LANG)
+                .subscribeOn(Schedulers.io())
+                .map(new Function<MovieResponse, List<Movie>>() {
+                    @Override
+                    public List<Movie> apply(MovieResponse movieResponse) throws Exception {
+                        return movieResponse.results;
+                    }
+                });
+    }
+
+    public Observable<List<Movie>> nowPlaying() {
+        return mService
+                .nowPlaying(API_KEY, DEFAULT_LANG)
+                .subscribeOn(Schedulers.io())
+                .map(new Function<MovieResponse, List<Movie>>() {
+                    @Override
+                    public List<Movie> apply(MovieResponse movieResponse) throws Exception {
+                        return movieResponse.results;
                     }
                 });
     }

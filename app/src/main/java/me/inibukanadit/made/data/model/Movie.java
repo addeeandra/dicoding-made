@@ -1,5 +1,8 @@
 package me.inibukanadit.made.data.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.text.ParseException;
@@ -7,7 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class Movie {
+public class Movie implements Parcelable {
 
     @SerializedName("id")
     private long id;
@@ -45,6 +48,64 @@ public class Movie {
         this.voteAverageRate = voteAverageRate;
         this.popularityRate = popularityRate;
     }
+
+    protected Movie(Parcel in) {
+        id = in.readLong();
+        title = in.readString();
+        overview = in.readString();
+        releaseDate = in.readString();
+        poster = in.readString();
+        backdrop = in.readString();
+        if (in.readByte() == 0) {
+            voteAverageRate = null;
+        } else {
+            voteAverageRate = in.readDouble();
+        }
+        if (in.readByte() == 0) {
+            popularityRate = null;
+        } else {
+            popularityRate = in.readDouble();
+        }
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeLong(id);
+        dest.writeString(title);
+        dest.writeString(overview);
+        dest.writeString(releaseDate);
+        dest.writeString(poster);
+        dest.writeString(backdrop);
+        if (voteAverageRate == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeDouble(voteAverageRate);
+        }
+        if (popularityRate == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeDouble(popularityRate);
+        }
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Movie> CREATOR = new Creator<Movie>() {
+        @Override
+        public Movie createFromParcel(Parcel in) {
+            return new Movie(in);
+        }
+
+        @Override
+        public Movie[] newArray(int size) {
+            return new Movie[size];
+        }
+    };
 
     private String formatDate(String fromDate) {
         try {

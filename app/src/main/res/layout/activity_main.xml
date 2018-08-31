@@ -1,56 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="32dp">
+    android:layout_height="match_parent">
 
-    <LinearLayout
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/et_movies_search"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_weight="1"
-            android:hint="@string/hint_search_movies" />
-
-        <Button
-            android:id="@+id/btn_movies_search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/btn_search" />
-
-    </LinearLayout>
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
-
-        <ListView
-            android:id="@+id/list_movies"
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="?attr/actionBarSize"
+            app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
+            app:titleTextColor="@color/white" />
 
-        <TextView
-            android:id="@+id/ph_movies"
-            android:layout_width="wrap_content"
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tab_main"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/hint_no_movies" />
+            app:tabIndicatorHeight="0dp"
+            app:tabSelectedTextColor="@color/tab_text_selected_color"
+            app:tabTextColor="@color/tab_text_color" />
 
-        <android.support.v4.widget.ContentLoadingProgressBar
-            android:id="@+id/clp_movies"
-            style="@style/Base.Widget.AppCompat.ProgressBar"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="32dp" />
+    </android.support.design.widget.AppBarLayout>
 
-    </FrameLayout>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-</LinearLayout>
+</android.support.design.widget.CoordinatorLayout>
