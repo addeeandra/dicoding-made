@@ -2,6 +2,7 @@ package me.inibukanadit.made.ui.main;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -78,6 +79,9 @@ public class MainActivity extends BaseActivity implements MainView {
             Intent searchIntent = new Intent(this, SearchActivity.class);
             startActivity(searchIntent);
             return true;
+        } else if (item.getItemId() == R.id.action_change_language) {
+            Intent settingIntent = new Intent(Settings.ACTION_LOCALE_SETTINGS);
+            startActivity(settingIntent);
         }
         return super.onOptionsItemSelected(item);
     }

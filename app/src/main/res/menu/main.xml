@@ -8,4 +8,9 @@
         android:title="@string/search"
         app:showAsAction="always" />
 
+    <item
+        android:id="@+id/action_change_language"
+        android:title="@string/change_language_settings"
+        app:showAsAction="never" />
+
 </menu>
