@@ -1,3 +1,13 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">Kamus EN-ID</string>
+
+    <string name="search_hint_id">Cari kata ..</string>
+    <string name="search_hint_en">Search a word ..</string>
+
+    <string name="search_placeholder_id">Kata tidak ditemukan</string>
+    <string name="search_placeholder_en">Word not found</string>
+
+    <string name="english_indonesia">English - Indonesia</string>
+    <string name="indonesia_english">Indonesia - English</string>
+    <string name="description">Keterangan</string>
 </resources>
