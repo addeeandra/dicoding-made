@@ -1,7 +1,14 @@
 package me.inibukanadit.made.data.db.entity;
 
+import android.database.Cursor;
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import me.inibukanadit.made.data.db.DatabaseContract;
+
+import static me.inibukanadit.made.data.db.DatabaseContract.getColumnInt;
+import static me.inibukanadit.made.data.db.DatabaseContract.FavoritesColumn;
+import static me.inibukanadit.made.data.db.DatabaseContract.getColumnString;
 
 public class Favorite implements Parcelable {
 
@@ -11,6 +18,13 @@ public class Favorite implements Parcelable {
     private String date;
 
     public Favorite() {
+    }
+
+    public Favorite(Cursor cursor) {
+        id = getColumnInt(cursor, FavoritesColumn._ID);
+        title = getColumnString(cursor, FavoritesColumn.TITLE);
+        description = getColumnString(cursor, FavoritesColumn.DESCRIPTION);
+        date = getColumnString(cursor, FavoritesColumn.DATE);
     }
 
     public int getId() {

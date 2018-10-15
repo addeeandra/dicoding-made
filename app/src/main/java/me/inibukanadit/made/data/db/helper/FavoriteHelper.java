@@ -85,4 +85,38 @@ public class FavoriteHelper {
         return mDatabase.delete(DATABASE_TABLE, _ID + " = '" + id + "'", null);
     }
 
+    public Cursor queryByIdProvider(String id) {
+        return mDatabase.query(
+                DATABASE_TABLE,
+                null,
+                _ID + " = ?",
+                new String[]{id},
+                null,
+                null,
+                null);
+    }
+
+    public Cursor queryProvider() {
+        return mDatabase.query(
+                DATABASE_TABLE,
+                null,
+                null,
+                null,
+                null,
+                null,
+                _ID + " DESC"
+        );
+    }
+
+    public long insertProvider(ContentValues cv) {
+        return mDatabase.insert(DATABASE_TABLE, null, cv);
+    }
+
+    public int updateProvider(String id, ContentValues cv) {
+        return mDatabase.update(DATABASE_TABLE, cv, _ID + " = ?", new String[]{id});
+    }
+
+    public int deleteProvider(String id) {
+        return mDatabase.delete(DATABASE_TABLE, _ID + " = ?", new String[]{id});
+    }
 }
