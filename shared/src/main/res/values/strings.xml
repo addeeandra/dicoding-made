@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Movies Catalogue</string>
+    <string name="hint_no_movies">Movies not available</string>
+    <string name="text_vote">Vote</string>
+    <string name="text_popularity">Popularity</string>
+
+    <string name="now_playing">Now Playing</string>
+    <string name="upcoming">Upcoming</string>
+    <string name="btn_detail">Detail</string>
+    <string name="btn_share">Share</string>
+    <string name="search">Search</string>
+    <string name="hint_search_movies">Search movies ..</string>
+    <string name="change_language_settings">Change Language Settings</string>
+</resources>

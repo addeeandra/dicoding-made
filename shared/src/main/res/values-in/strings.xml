@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Katalog Film</string>
+    <string name="hint_no_movies">Film tidak tersedia</string>
+    <string name="text_vote">Vote</string>
+    <string name="text_popularity">Popularitas</string>
+
+    <string name="now_playing">Sedang Tayang</string>
+    <string name="upcoming">Akan Datang</string>
+    <string name="btn_detail">Detail</string>
+    <string name="btn_share">Bagikan</string>
+    <string name="search">Cari</string>
+    <string name="hint_search_movies">Cari judul film ..</string>
+    <string name="change_language_settings">Ganti Pengaturan Bahasa</string>
+</resources>

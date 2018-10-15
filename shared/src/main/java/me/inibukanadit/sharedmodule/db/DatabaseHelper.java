@@ -1,7 +1,6 @@
-package me.inibukanadit.made.data.db;
+package me.inibukanadit.sharedmodule.db;
 
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.support.annotation.Nullable;
@@ -17,7 +16,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     "%s INTEGER PRIMARY KEY AUTOINCREMENT," +
                     "%s TEXT NOT NULL," +
                     "%s TEXT NOT NULL," +
-                    "%s TEXT NOT NULL)",
+                    "%s TEXT NOT NULL",
             DatabaseContract.TABLE_FAVORITES,
             DatabaseContract.FavoritesColumn._ID,
             DatabaseContract.FavoritesColumn.TITLE,

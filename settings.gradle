@@ -1,1 +1,1 @@
-include ':app', ':favoritemoviesapp'
+include ':app', ':favoritemoviesapp', ':shared'

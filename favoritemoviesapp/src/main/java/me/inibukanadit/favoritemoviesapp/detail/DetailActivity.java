@@ -1,4 +1,4 @@
-package me.inibukanadit.made.ui.detail;
+package me.inibukanadit.favoritemoviesapp.detail;
 
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -11,17 +11,16 @@ import com.squareup.picasso.Picasso;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.reactivex.disposables.CompositeDisposable;
-import me.inibukanadit.made.R;
-import me.inibukanadit.made.data.remote.MovieDbApi;
-import me.inibukanadit.made.data.remote.model.Movie;
-import me.inibukanadit.made.ui.base.BaseActivity;
-import me.inibukanadit.made.utils.Mapper;
+import me.inibukanadit.favoritemoviesapp.R;
+import me.inibukanadit.sharedmodule.remote.MovieDbApi;
+import me.inibukanadit.sharedmodule.remote.model.Movie;
+import me.inibukanadit.sharedmodule.ui.BaseActivity;
 
 public class DetailActivity extends BaseActivity implements DetailView {
 
     private CompositeDisposable mCompositeDisposable = new CompositeDisposable();
     private MovieDbApi mMovieDbApi = new MovieDbApi();
-    private DetailPresenter mPresenter;
+    private DetailPresenter mPresenter = new DetailPresenter(mMovieDbApi, mCompositeDisposable);
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -55,15 +54,12 @@ public class DetailActivity extends BaseActivity implements DetailView {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
-        mPresenter = new DetailPresenter(getContentResolver(), mMovieDbApi, mCompositeDisposable);
         mPresenter.onAttach(this);
 
         Bundle data = getIntent().getExtras();
         if (data != null) {
-            Movie movie = Mapper.bundleToMovie(data);
+            Movie movie = data.getParcelable("movie");
             mPresenter.onMoviePassed(movie);
-
-            mPresenter.addToFavorite(movie);
         }
     }
 

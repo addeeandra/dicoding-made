@@ -1,4 +1,4 @@
-package me.inibukanadit.made.ui.movies;
+package me.inibukanadit.favoritemoviesapp.movies;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -15,9 +15,9 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import me.inibukanadit.made.data.remote.MovieDbApi;
-import me.inibukanadit.made.data.remote.model.Movie;
 import me.inibukanadit.sharedmodule.R;
+import me.inibukanadit.sharedmodule.remote.MovieDbApi;
+import me.inibukanadit.sharedmodule.remote.model.Movie;
 
 public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewHolder> {
 
@@ -33,7 +33,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
     @Override
     public MovieViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(me.inibukanadit.sharedmodule.R.layout.list_movie, parent, false);
+        View view = inflater.inflate(R.layout.list_movie, parent, false);
         return new MovieViewHolder(view);
     }
 
