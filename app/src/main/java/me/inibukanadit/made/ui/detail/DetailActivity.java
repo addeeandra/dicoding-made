@@ -12,8 +12,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.reactivex.disposables.CompositeDisposable;
 import me.inibukanadit.made.R;
-import me.inibukanadit.made.data.MovieDbApi;
-import me.inibukanadit.made.data.model.Movie;
+import me.inibukanadit.made.data.remote.MovieDbApi;
+import me.inibukanadit.made.data.remote.model.Movie;
 import me.inibukanadit.made.ui.base.BaseActivity;
 import me.inibukanadit.made.utils.Mapper;
 

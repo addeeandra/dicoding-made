@@ -2,15 +2,13 @@ package me.inibukanadit.made.ui.search;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.NavUtils;
 import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.reactivex.disposables.CompositeDisposable;
 import me.inibukanadit.made.R;
-import me.inibukanadit.made.data.MovieDbApi;
+import me.inibukanadit.made.data.remote.MovieDbApi;
 import me.inibukanadit.made.ui.base.BaseActivity;
 import me.inibukanadit.made.ui.movies.MoviesFragment;
 import me.inibukanadit.made.ui.movies.MoviesPresenter;

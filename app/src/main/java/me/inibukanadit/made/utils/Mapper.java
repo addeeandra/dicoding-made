@@ -2,7 +2,7 @@ package me.inibukanadit.made.utils;
 
 import android.os.Bundle;
 
-import me.inibukanadit.made.data.model.Movie;
+import me.inibukanadit.made.data.remote.model.Movie;
 
 public class Mapper {
 

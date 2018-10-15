@@ -1,4 +1,4 @@
-package me.inibukanadit.made.data.model;
+package me.inibukanadit.made.data.remote.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;

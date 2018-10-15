@@ -1,7 +1,7 @@
 package me.inibukanadit.made.ui.base;
 
 import io.reactivex.disposables.CompositeDisposable;
-import me.inibukanadit.made.data.MovieDbApi;
+import me.inibukanadit.made.data.remote.MovieDbApi;
 
 public abstract class BasePresenter<V extends MvpView> implements MvpPresenter<V> {
 

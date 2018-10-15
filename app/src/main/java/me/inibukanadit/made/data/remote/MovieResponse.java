@@ -1,10 +1,10 @@
-package me.inibukanadit.made.data;
+package me.inibukanadit.made.data.remote;
 
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-import me.inibukanadit.made.data.model.Movie;
+import me.inibukanadit.made.data.remote.model.Movie;
 
 public class MovieResponse {
 

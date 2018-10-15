@@ -1,6 +1,6 @@
 package me.inibukanadit.made.ui.detail;
 
-import me.inibukanadit.made.data.model.Movie;
+import me.inibukanadit.made.data.remote.model.Movie;
 import me.inibukanadit.made.ui.base.MvpView;
 
 public interface DetailView extends MvpView {

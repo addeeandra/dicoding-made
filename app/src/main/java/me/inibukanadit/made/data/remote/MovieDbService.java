@@ -1,7 +1,6 @@
-package me.inibukanadit.made.data;
+package me.inibukanadit.made.data.remote;
 
 import io.reactivex.Observable;
-import me.inibukanadit.made.data.model.Movie;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 

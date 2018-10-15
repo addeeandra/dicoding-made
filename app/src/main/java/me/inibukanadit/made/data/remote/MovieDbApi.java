@@ -1,4 +1,4 @@
-package me.inibukanadit.made.data;
+package me.inibukanadit.made.data.remote;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import io.reactivex.Observable;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 import me.inibukanadit.made.BuildConfig;
-import me.inibukanadit.made.data.model.Movie;
+import me.inibukanadit.made.data.remote.model.Movie;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;

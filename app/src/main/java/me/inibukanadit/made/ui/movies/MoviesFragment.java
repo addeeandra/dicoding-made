@@ -11,8 +11,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -23,8 +21,8 @@ import io.reactivex.disposables.CompositeDisposable;
 import me.inibukanadit.made.ui.base.BaseFragment;
 import me.inibukanadit.made.ui.detail.DetailActivity;
 import me.inibukanadit.made.R;
-import me.inibukanadit.made.data.MovieDbApi;
-import me.inibukanadit.made.data.model.Movie;
+import me.inibukanadit.made.data.remote.MovieDbApi;
+import me.inibukanadit.made.data.remote.model.Movie;
 import me.inibukanadit.made.utils.Mapper;
 
 public class MoviesFragment extends BaseFragment implements MoviesView {

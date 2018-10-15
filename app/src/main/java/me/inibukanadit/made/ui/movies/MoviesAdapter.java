@@ -16,8 +16,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import me.inibukanadit.made.R;
-import me.inibukanadit.made.data.MovieDbApi;
-import me.inibukanadit.made.data.model.Movie;
+import me.inibukanadit.made.data.remote.MovieDbApi;
+import me.inibukanadit.made.data.remote.model.Movie;
 
 public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewHolder> {
 

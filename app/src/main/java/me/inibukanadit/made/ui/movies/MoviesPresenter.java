@@ -3,14 +3,12 @@ package me.inibukanadit.made.ui.movies;
 import java.util.List;
 
 import io.reactivex.Observable;
-import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
-import me.inibukanadit.made.data.MovieDbApi;
-import me.inibukanadit.made.data.model.Movie;
+import me.inibukanadit.made.data.remote.MovieDbApi;
+import me.inibukanadit.made.data.remote.model.Movie;
 import me.inibukanadit.made.ui.base.BasePresenter;
 
 public class MoviesPresenter extends BasePresenter<MoviesView> {
