@@ -1,11 +1,11 @@
-package me.inibukanadit.favoritemoviesapp.movies;
+package me.inibukanadit.made.favorites;
 
 import java.util.List;
 
 import me.inibukanadit.sharedmodule.remote.model.Movie;
 import me.inibukanadit.sharedmodule.ui.MvpView;
 
-interface MoviesView extends MvpView {
+interface FavoritesView extends MvpView {
 
     void showMovies(List<Movie> movieList);
 

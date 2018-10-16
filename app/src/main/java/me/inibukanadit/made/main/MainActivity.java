@@ -10,6 +10,8 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +19,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import me.inibukanadit.made.R;
+import me.inibukanadit.made.favorites.FavoritesFragment;
 import me.inibukanadit.made.movies.MoviesFragment;
 import me.inibukanadit.made.search.SearchActivity;
 import me.inibukanadit.sharedmodule.ui.BaseActivity;
@@ -47,6 +50,10 @@ public class MainActivity extends BaseActivity implements MainView {
         if (savedInstanceState == null) {
             mPages = new ArrayList<>();
 
+            FavoritesFragment favoritesFragment = new FavoritesFragment();
+            favoritesFragment.setParentView(this);
+            mPages.add(favoritesFragment);
+
             MoviesFragment nowPlayingFragment = new MoviesFragment();
             nowPlayingFragment.setParentView(this);
             nowPlayingFragment.setFetchType(MoviesFragment.FETCH_NOW_PLAYING);
@@ -58,12 +65,25 @@ public class MainActivity extends BaseActivity implements MainView {
             mPages.add(upcomingFragment);
 
             mTitles = new ArrayList<>();
+            mTitles.add("");
             mTitles.add(getString(R.string.now_playing));
             mTitles.add(getString(R.string.upcoming));
 
             mPageAdapter = new MainPagerAdapter(getSupportFragmentManager(), getPages(), getTitles());
             vpMain.setAdapter(mPageAdapter);
             tabMain.setupWithViewPager(vpMain);
+
+            int tabFavIndex = 0;
+            View favoriteTab = ((LinearLayout) tabMain.getChildAt(0)).getChildAt(tabFavIndex);
+            LinearLayout.LayoutParams lParams = (LinearLayout.LayoutParams) favoriteTab.getLayoutParams();
+
+            tabMain.getTabAt(tabFavIndex).setIcon(R.drawable.ic_star_filled);
+
+            lParams.weight = 0;
+            lParams.width = LinearLayout.LayoutParams.WRAP_CONTENT;
+            favoriteTab.setLayoutParams(lParams);
+
+            vpMain.setCurrentItem(1);
         }
     }
 

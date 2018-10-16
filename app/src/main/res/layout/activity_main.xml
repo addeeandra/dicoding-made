@@ -19,7 +19,7 @@
             android:id="@+id/tab_main"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:tabIndicatorHeight="0dp"
+            app:tabIndicatorHeight="2dp"
             app:tabSelectedTextColor="@color/tab_text_selected_color"
             app:tabTextColor="@color/tab_text_color" />
 

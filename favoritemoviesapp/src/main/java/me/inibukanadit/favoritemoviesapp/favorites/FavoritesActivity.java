@@ -1,4 +1,4 @@
-package me.inibukanadit.favoritemoviesapp.movies;
+package me.inibukanadit.favoritemoviesapp.favorites;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,10 +24,10 @@ import me.inibukanadit.favoritemoviesapp.detail.DetailActivity;
 import me.inibukanadit.sharedmodule.remote.model.Movie;
 import me.inibukanadit.sharedmodule.ui.BaseActivity;
 
-public class MoviesActivity extends BaseActivity implements MoviesView {
+public class FavoritesActivity extends BaseActivity implements FavoritesView {
 
     private final CompositeDisposable mCompositeDisposable = new CompositeDisposable();
-    private MoviesPresenter mPresenter;
+    private FavoritesPresenter mPresenter;
 
     @BindView(R.id.rv_movies)
     RecyclerView listMovies;
@@ -47,7 +47,7 @@ public class MoviesActivity extends BaseActivity implements MoviesView {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_movies);
+        setContentView(R.layout.activity_favorites);
 
         ButterKnife.bind(this);
 
@@ -63,7 +63,7 @@ public class MoviesActivity extends BaseActivity implements MoviesView {
             }
         });
 
-        mPresenter = new MoviesPresenter(mCompositeDisposable, getContentResolver());
+        mPresenter = new FavoritesPresenter(mCompositeDisposable, getContentResolver());
         mPresenter.onAttach(this);
     }
 
@@ -98,13 +98,13 @@ public class MoviesActivity extends BaseActivity implements MoviesView {
     public void showMovies(final List<Movie> movieList) {
         listMovies.setVisibility(View.VISIBLE);
         listMovies.setLayoutManager(new LinearLayoutManager(this));
-        listMovies.setAdapter(new MoviesAdapter(movieList, new MoviesAdapter.OnMovieClickListener() {
+        listMovies.setAdapter(new FavoritesAdapter(movieList, new FavoritesAdapter.OnMovieClickListener() {
             @Override
             public void onDetailClick(Movie movie) {
                 Bundle data = new Bundle();
                 data.putParcelable("movie", movie);
 
-                Intent detailIntent = new Intent(MoviesActivity.this, DetailActivity.class);
+                Intent detailIntent = new Intent(FavoritesActivity.this, DetailActivity.class);
 
                 detailIntent.putExtras(data);
                 startActivity(detailIntent);

@@ -37,6 +37,7 @@
                 android:value=".main.MainActivity" />
         </activity>
 
+        <activity android:name=".favorites.FavoritesFragment" />
         <activity android:name=".detail.DetailActivity" />
 
         <provider

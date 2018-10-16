@@ -1,4 +1,4 @@
-package me.inibukanadit.favoritemoviesapp.movies;
+package me.inibukanadit.made.favorites;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -19,12 +19,12 @@ import me.inibukanadit.sharedmodule.R;
 import me.inibukanadit.sharedmodule.remote.MovieDbApi;
 import me.inibukanadit.sharedmodule.remote.model.Movie;
 
-public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewHolder> {
+public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.MovieViewHolder> {
 
     private final List<Movie> mMovies;
     private OnMovieClickListener mOnMovieClickListener;
 
-    public MoviesAdapter(List<Movie> movies, OnMovieClickListener onMovieClickListener) {
+    public FavoritesAdapter(List<Movie> movies, OnMovieClickListener onMovieClickListener) {
         mMovies = movies;
         mOnMovieClickListener = onMovieClickListener;
     }

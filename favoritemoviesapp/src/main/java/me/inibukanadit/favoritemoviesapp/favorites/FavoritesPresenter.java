@@ -1,4 +1,4 @@
-package me.inibukanadit.favoritemoviesapp.movies;
+package me.inibukanadit.favoritemoviesapp.favorites;
 
 import android.content.ContentResolver;
 import android.database.Cursor;
@@ -18,11 +18,11 @@ import me.inibukanadit.sharedmodule.ui.BasePresenter;
 
 import static me.inibukanadit.sharedmodule.db.DatabaseContract.CONTENT_URI;
 
-class MoviesPresenter extends BasePresenter<MoviesView> {
+class FavoritesPresenter extends BasePresenter<FavoritesView> {
 
     private final ContentResolver mContentResolver;
 
-    MoviesPresenter(
+    FavoritesPresenter(
             CompositeDisposable compositeDisposable,
             ContentResolver contentResolver) {
         super(compositeDisposable);
