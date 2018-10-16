@@ -7,4 +7,8 @@ public interface DetailView extends MvpView {
 
     void showMovie(Movie movie);
 
+    void showAddToFavorite();
+
+    void showRemoveFromFavorite();
+
 }
