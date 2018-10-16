@@ -9,6 +9,7 @@
     <string name="btn_detail">Detail</string>
     <string name="btn_share">Share</string>
     <string name="search">Search</string>
+    <string name="favorite">Favorite</string>
     <string name="hint_search_movies">Search movies ..</string>
     <string name="change_language_settings">Change Language Settings</string>
 </resources>

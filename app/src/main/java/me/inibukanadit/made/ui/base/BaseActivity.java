@@ -1,5 +1,6 @@
 package me.inibukanadit.made.ui.base;
 
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
@@ -8,8 +9,7 @@ import me.inibukanadit.made.utils.NetworkUtils;
 public class BaseActivity extends AppCompatActivity implements MvpView {
 
     protected void showSnackbar(String message) {
-        // TODO use snackbar instead!
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_SHORT).show();
     }
 
     @Override

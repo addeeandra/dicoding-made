@@ -2,6 +2,7 @@ package me.inibukanadit.made.ui.detail;
 
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -44,33 +45,60 @@ public class DetailActivity extends BaseActivity implements DetailView {
     @BindView(R.id.tv_movie_vote_value)
     TextView tvVote;
 
+    private boolean mAddedToFavorite = false;
+    private Movie mMovie;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
         ButterKnife.bind(this);
 
+        mPresenter = new DetailPresenter(getContentResolver(), mMovieDbApi, mCompositeDisposable);
+        mPresenter.onAttach(this);
+
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
-        mPresenter = new DetailPresenter(getContentResolver(), mMovieDbApi, mCompositeDisposable);
-        mPresenter.onAttach(this);
-
         Bundle data = getIntent().getExtras();
         if (data != null) {
             Movie movie = Mapper.bundleToMovie(data);
             mPresenter.onMoviePassed(movie);
-
-            mPresenter.addToFavorite(movie);
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mPresenter.checkFavorite(mMovie, false);
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        MenuItem menuItem = menu.findItem(R.id.action_favorite);
+        if (mAddedToFavorite) {
+            menuItem.setIcon(R.drawable.ic_star_filled);
+        } else {
+            menuItem.setIcon(R.drawable.ic_star_border);
+        }
+        return true;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.favorite, menu);
+        return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             finish();
+            return true;
+        } else if (item.getItemId() == R.id.action_favorite) {
+            mPresenter.checkFavorite(mMovie, true);
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -90,5 +118,24 @@ public class DetailActivity extends BaseActivity implements DetailView {
         tvDate.setText(movie.getReleaseDate());
         tvVote.setText(String.valueOf(movie.getVoteAverageRate()));
         tvPopularity.setText(String.valueOf(movie.getPopularityRate()));
+
+        mMovie = movie;
+    }
+
+    @Override
+    public void showAddToFavorite() {
+        mAddedToFavorite = false;
+        invalidateOptionsMenu();
+    }
+
+    @Override
+    public void showRemoveFromFavorite() {
+        mAddedToFavorite = true;
+        invalidateOptionsMenu();
+    }
+
+    @Override
+    public void showMessage(String message) {
+        showSnackbar(message);
     }
 }
