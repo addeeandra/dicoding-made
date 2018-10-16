@@ -2,10 +2,15 @@ package me.inibukanadit.favoritemoviesapp.movies;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.ContentLoadingProgressBar;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -33,6 +38,12 @@ public class MoviesActivity extends BaseActivity implements MoviesView {
     @BindView(R.id.ph_movies)
     TextView phMovies;
 
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+
+    @BindView(R.id.swipe_refresh_movies)
+    SwipeRefreshLayout swipeRefresh;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,14 +51,26 @@ public class MoviesActivity extends BaseActivity implements MoviesView {
 
         ButterKnife.bind(this);
 
+        setSupportActionBar(toolbar);
+
         showPlaceholder();
         hideLoading();
 
+        swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mPresenter.fetchFavoriteMovies();
+            }
+        });
+
         mPresenter = new MoviesPresenter(mCompositeDisposable, getContentResolver());
         mPresenter.onAttach(this);
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
         mPresenter.fetchFavoriteMovies();
-
     }
 
     @Override
@@ -57,7 +80,24 @@ public class MoviesActivity extends BaseActivity implements MoviesView {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.language, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_change_language) {
+            Intent settingIntent = new Intent(Settings.ACTION_LOCALE_SETTINGS);
+            startActivity(settingIntent);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     public void showMovies(final List<Movie> movieList) {
+        swipeRefresh.setRefreshing(false);
+
         listMovies.setVisibility(View.VISIBLE);
         listMovies.setLayoutManager(new LinearLayoutManager(this));
         listMovies.setAdapter(new MoviesAdapter(movieList, new MoviesAdapter.OnMovieClickListener() {

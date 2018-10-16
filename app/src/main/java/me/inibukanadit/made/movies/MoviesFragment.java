@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.ContentLoadingProgressBar;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -44,6 +45,9 @@ public class MoviesFragment extends BaseFragment implements MoviesView {
     @BindView(R.id.ph_movies)
     TextView phMovies;
 
+    @BindView(R.id.swipe_refresh_movies)
+    SwipeRefreshLayout swipeRefresh;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -56,11 +60,14 @@ public class MoviesFragment extends BaseFragment implements MoviesView {
         showPlaceholder();
         hideLoading();
 
-        if (mFetchType == FETCH_UPCOMING) {
-            mPresenter.fetchNowPlayingMovies();
-        } else if (mFetchType == FETCH_NOW_PLAYING) {
-            mPresenter.fetchUpcomingMovies();
-        }
+        swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                fetchMovies();
+            }
+        });
+
+        fetchMovies();
     }
 
     @Override
@@ -77,6 +84,8 @@ public class MoviesFragment extends BaseFragment implements MoviesView {
 
     @Override
     public void showMovies(final List<Movie> movieList) {
+        swipeRefresh.setRefreshing(false);
+
         listMovies.setVisibility(View.VISIBLE);
         listMovies.setLayoutManager(new LinearLayoutManager(getActivity()));
         listMovies.setAdapter(new MoviesAdapter(movieList, new MoviesAdapter.OnMovieClickListener() {
@@ -115,6 +124,14 @@ public class MoviesFragment extends BaseFragment implements MoviesView {
     public void showPlaceholder() {
         phMovies.setVisibility(View.VISIBLE);
         listMovies.setVisibility(View.GONE);
+    }
+
+    private void fetchMovies() {
+        if (mFetchType == FETCH_UPCOMING) {
+            mPresenter.fetchNowPlayingMovies();
+        } else if (mFetchType == FETCH_NOW_PLAYING) {
+            mPresenter.fetchUpcomingMovies();
+        }
     }
 
     public void setFetchType(int type) {

@@ -2,4 +2,5 @@
 <resources>
     <string name="app_name">Film Favorit</string>
     <string name="favorite">Favorit</string>
+    <string name="change_language_settings">Pengaturan Bahasa</string>
 </resources>

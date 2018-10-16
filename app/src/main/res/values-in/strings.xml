@@ -11,5 +11,5 @@
     <string name="search">Cari</string>
     <string name="favorite">Favorit</string>
     <string name="hint_search_movies">Cari judul film ..</string>
-    <string name="change_language_settings">Ganti Pengaturan Bahasa</string>
+    <string name="change_language_settings">Pengaturan Bahasa</string>
 </resources>

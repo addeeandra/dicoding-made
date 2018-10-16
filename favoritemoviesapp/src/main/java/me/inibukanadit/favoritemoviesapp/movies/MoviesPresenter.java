@@ -57,7 +57,12 @@ class MoviesPresenter extends BasePresenter<MoviesView> {
                             } while (cursor.moveToNext());
                         }
 
-                        getView().showMovies(movies);
+                        if (!movies.isEmpty()) {
+                            getView().showMovies(movies);
+                        } else {
+                            getView().showPlaceholder();
+                        }
+
                         getView().hideLoading();
                     }
                 }, new Consumer<Throwable>() {
