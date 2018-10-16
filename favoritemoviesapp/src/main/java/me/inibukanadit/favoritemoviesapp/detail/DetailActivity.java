@@ -132,4 +132,9 @@ public class DetailActivity extends BaseActivity implements DetailView {
         mAddedToFavorite = true;
         invalidateOptionsMenu();
     }
+
+    @Override
+    public void showMessage(String message) {
+        showSnackbar(message);
+    }
 }

@@ -48,6 +48,7 @@ class DetailPresenter extends BasePresenter<DetailView> {
                 cv.put(DatabaseContract.FavoritesColumn._ID, movie.getId());
                 cv.put(DatabaseContract.FavoritesColumn.TITLE, movie.getTitle());
                 cv.put(DatabaseContract.FavoritesColumn.DESCRIPTION, movie.getOverview());
+                cv.put(DatabaseContract.FavoritesColumn.POSTER, movie.getPoster());
                 cv.put(DatabaseContract.FavoritesColumn.VOTE, movie.getVoteAverageRate());
                 cv.put(DatabaseContract.FavoritesColumn.POPULARITY, movie.getPopularityRate());
                 cv.put(DatabaseContract.FavoritesColumn.DATE, movie.getReleaseDate());

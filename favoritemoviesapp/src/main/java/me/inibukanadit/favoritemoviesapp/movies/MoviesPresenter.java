@@ -52,6 +52,7 @@ class MoviesPresenter extends BasePresenter<MoviesView> {
                                 movie.setId(cursor.getInt(cursor.getColumnIndex(DatabaseContract.FavoritesColumn._ID)));
                                 movie.setTitle(cursor.getString(cursor.getColumnIndex(DatabaseContract.FavoritesColumn.TITLE)));
                                 movie.setOverview(cursor.getString(cursor.getColumnIndex(DatabaseContract.FavoritesColumn.DESCRIPTION)));
+                                movie.setPoster(cursor.getString(cursor.getColumnIndex(DatabaseContract.FavoritesColumn.POSTER)));
                                 movie.setVoteAverageRate(cursor.getDouble(cursor.getColumnIndex(DatabaseContract.FavoritesColumn.VOTE)));
                                 movie.setPopularityRate(cursor.getDouble(cursor.getColumnIndex(DatabaseContract.FavoritesColumn.POPULARITY)));
                                 movie.setReleaseDate(cursor.getString(cursor.getColumnIndex(DatabaseContract.FavoritesColumn.DATE)));

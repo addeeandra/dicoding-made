@@ -16,6 +16,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     "%s INTEGER PRIMARY KEY AUTOINCREMENT," +
                     "%s TEXT NOT NULL," +
                     "%s TEXT NOT NULL," +
+                    "%s TEXT NOT NULL," +
                     "%s DOUBLE DEFAULT 0," +
                     "%s DOUBLE DEFAULT 0," +
                     "%s TEXT NOT NULL" +
@@ -24,6 +25,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             DatabaseContract.FavoritesColumn._ID,
             DatabaseContract.FavoritesColumn.TITLE,
             DatabaseContract.FavoritesColumn.DESCRIPTION,
+            DatabaseContract.FavoritesColumn.POSTER,
             DatabaseContract.FavoritesColumn.VOTE,
             DatabaseContract.FavoritesColumn.POPULARITY,
             DatabaseContract.FavoritesColumn.DATE
