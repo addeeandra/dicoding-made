@@ -11,6 +11,8 @@ public class DatabaseContract {
     public static final class FavoritesColumn implements BaseColumns {
         public static final String TITLE = "title";
         public static final String DESCRIPTION = "description";
+        public static final String VOTE = "vote";
+        public static final String POPULARITY = "popularity";
         public static final String DATE = "date";
     }
 
@@ -30,8 +32,8 @@ public class DatabaseContract {
         return cursor.getInt(cursor.getColumnIndex(columnName));
     }
 
-    public static long getColumnLong(Cursor cursor, String columnName) {
-        return cursor.getLong(cursor.getColumnIndex(columnName));
+    public static double getColumnDouble(Cursor cursor, String columnName) {
+        return cursor.getDouble(cursor.getColumnIndex(columnName));
     }
 
 }

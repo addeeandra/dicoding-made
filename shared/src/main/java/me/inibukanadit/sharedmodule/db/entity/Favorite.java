@@ -6,6 +6,7 @@ import android.os.Parcelable;
 
 import me.inibukanadit.sharedmodule.db.DatabaseContract;
 
+import static me.inibukanadit.sharedmodule.db.DatabaseContract.getColumnDouble;
 import static me.inibukanadit.sharedmodule.db.DatabaseContract.getColumnInt;
 import static me.inibukanadit.sharedmodule.db.DatabaseContract.getColumnString;
 
@@ -14,6 +15,8 @@ public class Favorite implements Parcelable {
     private int id;
     private String title;
     private String description;
+    private double vote;
+    private double popularity;
     private String date;
 
     public Favorite() {
@@ -23,6 +26,8 @@ public class Favorite implements Parcelable {
         id = getColumnInt(cursor, DatabaseContract.FavoritesColumn._ID);
         title = getColumnString(cursor, DatabaseContract.FavoritesColumn.TITLE);
         description = getColumnString(cursor, DatabaseContract.FavoritesColumn.DESCRIPTION);
+        vote = getColumnDouble(cursor, DatabaseContract.FavoritesColumn.VOTE);
+        popularity = getColumnDouble(cursor, DatabaseContract.FavoritesColumn.POPULARITY);
         date = getColumnString(cursor, DatabaseContract.FavoritesColumn.DATE);
     }
 
@@ -58,10 +63,28 @@ public class Favorite implements Parcelable {
         this.date = date;
     }
 
+    public double getVote() {
+        return vote;
+    }
+
+    public void setVote(double vote) {
+        this.vote = vote;
+    }
+
+    public double getPopularity() {
+        return popularity;
+    }
+
+    public void setPopularity(double popularity) {
+        this.popularity = popularity;
+    }
+
     protected Favorite(Parcel in) {
         id = in.readInt();
         title = in.readString();
         description = in.readString();
+        vote = in.readDouble();
+        popularity = in.readDouble();
         date = in.readString();
     }
 
@@ -70,6 +93,8 @@ public class Favorite implements Parcelable {
         dest.writeInt(id);
         dest.writeString(title);
         dest.writeString(description);
+        dest.writeDouble(vote);
+        dest.writeDouble(popularity);
         dest.writeString(date);
     }
 

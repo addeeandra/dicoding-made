@@ -12,6 +12,7 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
+import me.inibukanadit.sharedmodule.db.DatabaseContract;
 import me.inibukanadit.sharedmodule.remote.model.Movie;
 import me.inibukanadit.sharedmodule.ui.BasePresenter;
 
@@ -48,10 +49,12 @@ class MoviesPresenter extends BasePresenter<MoviesView> {
                             Movie movie;
                             do {
                                 movie = new Movie();
-                                movie.setId(cursor.getInt(cursor.getColumnIndex("_ID")));
-                                movie.setTitle(cursor.getString(cursor.getColumnIndex("TITLE")));
-                                movie.setOverview(cursor.getString(cursor.getColumnIndex("DESCRIPTION")));
-                                movie.setReleaseDate(cursor.getString(cursor.getColumnIndex("DATE")));
+                                movie.setId(cursor.getInt(cursor.getColumnIndex(DatabaseContract.FavoritesColumn._ID)));
+                                movie.setTitle(cursor.getString(cursor.getColumnIndex(DatabaseContract.FavoritesColumn.TITLE)));
+                                movie.setOverview(cursor.getString(cursor.getColumnIndex(DatabaseContract.FavoritesColumn.DESCRIPTION)));
+                                movie.setVoteAverageRate(cursor.getDouble(cursor.getColumnIndex(DatabaseContract.FavoritesColumn.VOTE)));
+                                movie.setPopularityRate(cursor.getDouble(cursor.getColumnIndex(DatabaseContract.FavoritesColumn.POPULARITY)));
+                                movie.setReleaseDate(cursor.getString(cursor.getColumnIndex(DatabaseContract.FavoritesColumn.DATE)));
 
                                 movies.add(movie);
                             } while (cursor.moveToNext());
