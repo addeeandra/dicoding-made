@@ -1,4 +1,4 @@
-package me.inibukanadit.made.ui.search;
+package me.inibukanadit.made.search;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,14 +8,14 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.reactivex.disposables.CompositeDisposable;
 import me.inibukanadit.made.R;
-import me.inibukanadit.made.data.remote.MovieDbApi;
-import me.inibukanadit.made.ui.base.BaseActivity;
-import me.inibukanadit.made.ui.movies.MoviesFragment;
-import me.inibukanadit.made.ui.movies.MoviesPresenter;
+import me.inibukanadit.made.movies.MoviesFragment;
+import me.inibukanadit.made.movies.MoviesPresenter;
+import me.inibukanadit.sharedmodule.remote.MovieDbApi;
+import me.inibukanadit.sharedmodule.ui.BaseActivity;
 
 public class SearchActivity extends BaseActivity implements SearchView {
 
-    private CompositeDisposable mCompositeDisposable = new CompositeDisposable();
+    private final CompositeDisposable mCompositeDisposable = new CompositeDisposable();
     private MovieDbApi mMovieDbApi = new MovieDbApi();
     private SearchPresenter mPresenter = new SearchPresenter(mMovieDbApi, mCompositeDisposable);
 

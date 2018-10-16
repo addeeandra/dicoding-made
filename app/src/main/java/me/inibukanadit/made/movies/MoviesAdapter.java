@@ -1,4 +1,4 @@
-package me.inibukanadit.made.ui.movies;
+package me.inibukanadit.made.movies;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -15,13 +15,13 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import me.inibukanadit.made.data.remote.MovieDbApi;
-import me.inibukanadit.made.data.remote.model.Movie;
 import me.inibukanadit.sharedmodule.R;
+import me.inibukanadit.sharedmodule.remote.MovieDbApi;
+import me.inibukanadit.sharedmodule.remote.model.Movie;
 
 public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewHolder> {
 
-    private List<Movie> mMovies;
+    private final List<Movie> mMovies;
     private OnMovieClickListener mOnMovieClickListener;
 
     public MoviesAdapter(List<Movie> movies, OnMovieClickListener onMovieClickListener) {
@@ -67,7 +67,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
         @BindView(R.id.btn_movie_share)
         Button btnShare;
 
-        public MovieViewHolder(View itemView) {
+        MovieViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }

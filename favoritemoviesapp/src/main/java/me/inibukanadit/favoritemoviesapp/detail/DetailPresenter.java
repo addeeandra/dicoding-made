@@ -13,7 +13,7 @@ import me.inibukanadit.sharedmodule.ui.BasePresenter;
 
 import static me.inibukanadit.sharedmodule.db.DatabaseContract.CONTENT_URI;
 
-public class DetailPresenter extends BasePresenter<DetailView> {
+class DetailPresenter extends BasePresenter<DetailView> {
 
     private final ContentResolver mContentResolver;
 

@@ -1,12 +1,10 @@
-package me.inibukanadit.made.ui.main;
+package me.inibukanadit.made.main;
 
 import android.support.v4.app.Fragment;
-
 import java.util.List;
+import me.inibukanadit.sharedmodule.ui.MvpView;
 
-import me.inibukanadit.made.ui.base.MvpView;
-
-public interface MainView extends MvpView {
+interface MainView extends MvpView {
 
     List<Fragment> getPages();
 

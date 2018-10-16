@@ -1,10 +1,10 @@
-package me.inibukanadit.made.ui.search;
+package me.inibukanadit.made.search;
 
 import io.reactivex.disposables.CompositeDisposable;
-import me.inibukanadit.made.data.remote.MovieDbApi;
-import me.inibukanadit.made.ui.base.BasePresenter;
+import me.inibukanadit.sharedmodule.remote.MovieDbApi;
+import me.inibukanadit.sharedmodule.ui.BasePresenter;
 
-public class SearchPresenter extends BasePresenter<SearchView> {
+class SearchPresenter extends BasePresenter<SearchView> {
 
     public SearchPresenter(MovieDbApi mMovieDbApi, CompositeDisposable mCompositeDisposable) {
         super(mMovieDbApi, mCompositeDisposable);

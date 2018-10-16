@@ -1,4 +1,4 @@
-package me.inibukanadit.made.ui.main;
+package me.inibukanadit.made.main;
 
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -7,9 +7,9 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import java.util.List;
 
-public class MainPagerAdapter extends FragmentPagerAdapter {
+class MainPagerAdapter extends FragmentPagerAdapter {
 
-    private List<Fragment> mFragments;
+    private final List<Fragment> mFragments;
     private List<String> mTitles;
 
     public MainPagerAdapter(FragmentManager fm, List<Fragment> mFragments, List<String> mTitles) {

@@ -1,4 +1,4 @@
-package me.inibukanadit.favoritemoviesapp.detail;
+package me.inibukanadit.made.detail;
 
 import me.inibukanadit.sharedmodule.remote.model.Movie;
 import me.inibukanadit.sharedmodule.ui.MvpView;

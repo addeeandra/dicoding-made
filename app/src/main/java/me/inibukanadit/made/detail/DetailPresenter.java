@@ -1,4 +1,4 @@
-package me.inibukanadit.made.ui.detail;
+package me.inibukanadit.made.detail;
 
 import android.content.ContentResolver;
 import android.content.ContentValues;
@@ -6,14 +6,14 @@ import android.database.Cursor;
 import android.net.Uri;
 
 import io.reactivex.disposables.CompositeDisposable;
-import me.inibukanadit.made.data.remote.MovieDbApi;
-import me.inibukanadit.made.data.remote.model.Movie;
-import me.inibukanadit.made.ui.base.BasePresenter;
 import me.inibukanadit.sharedmodule.db.DatabaseContract;
+import me.inibukanadit.sharedmodule.remote.MovieDbApi;
+import me.inibukanadit.sharedmodule.remote.model.Movie;
+import me.inibukanadit.sharedmodule.ui.BasePresenter;
 
 import static me.inibukanadit.sharedmodule.db.DatabaseContract.CONTENT_URI;
 
-public class DetailPresenter extends BasePresenter<DetailView> {
+class DetailPresenter extends BasePresenter<DetailView> {
 
     private final ContentResolver mContentResolver;
 

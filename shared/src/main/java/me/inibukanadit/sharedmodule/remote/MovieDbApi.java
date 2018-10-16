@@ -20,7 +20,7 @@ public class MovieDbApi {
     private static final String API_KEY = BuildConfig.API_KEY;
     private static final String DEFAULT_LANG = "en-US";
 
-    private MovieDbService mService;
+    private final MovieDbService mService;
 
     public MovieDbApi() {
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
@@ -45,7 +45,7 @@ public class MovieDbApi {
                 .subscribeOn(Schedulers.io())
                 .map(new Function<MovieResponse, List<Movie>>() {
                     @Override
-                    public List<Movie> apply(MovieResponse movieResponse) throws Exception {
+                    public List<Movie> apply(MovieResponse movieResponse) {
                         return movieResponse.results;
                     }
                 });
@@ -57,7 +57,7 @@ public class MovieDbApi {
                 .subscribeOn(Schedulers.io())
                 .map(new Function<MovieResponse, List<Movie>>() {
                     @Override
-                    public List<Movie> apply(MovieResponse movieResponse) throws Exception {
+                    public List<Movie> apply(MovieResponse movieResponse) {
                         return movieResponse.results;
                     }
                 });
@@ -69,7 +69,7 @@ public class MovieDbApi {
                 .subscribeOn(Schedulers.io())
                 .map(new Function<MovieResponse, List<Movie>>() {
                     @Override
-                    public List<Movie> apply(MovieResponse movieResponse) throws Exception {
+                    public List<Movie> apply(MovieResponse movieResponse) {
                         return movieResponse.results;
                     }
                 });

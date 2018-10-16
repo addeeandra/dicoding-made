@@ -19,7 +19,7 @@ import me.inibukanadit.sharedmodule.ui.BaseActivity;
 
 public class DetailActivity extends BaseActivity implements DetailView {
 
-    private CompositeDisposable mCompositeDisposable = new CompositeDisposable();
+    private final CompositeDisposable mCompositeDisposable = new CompositeDisposable();
     private MovieDbApi mMovieDbApi = new MovieDbApi();
     private DetailPresenter mPresenter;
 

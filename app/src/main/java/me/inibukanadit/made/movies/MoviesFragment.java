@@ -1,4 +1,4 @@
-package me.inibukanadit.made.ui.movies;
+package me.inibukanadit.made.movies;
 
 import android.content.Context;
 import android.content.Intent;
@@ -18,16 +18,15 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.reactivex.disposables.CompositeDisposable;
-import me.inibukanadit.made.ui.base.BaseFragment;
-import me.inibukanadit.made.ui.detail.DetailActivity;
+import me.inibukanadit.made.detail.DetailActivity;
 import me.inibukanadit.made.R;
-import me.inibukanadit.made.data.remote.MovieDbApi;
-import me.inibukanadit.made.data.remote.model.Movie;
-import me.inibukanadit.made.utils.Mapper;
+import me.inibukanadit.sharedmodule.remote.MovieDbApi;
+import me.inibukanadit.sharedmodule.remote.model.Movie;
+import me.inibukanadit.sharedmodule.ui.BaseFragment;
 
 public class MoviesFragment extends BaseFragment implements MoviesView {
 
-    public static int FETCH_UPCOMING = 1;
+    public static final int FETCH_UPCOMING = 1;
     public static int FETCH_NOW_PLAYING = 2;
 
     private MovieDbApi mApi = new MovieDbApi();
@@ -83,7 +82,9 @@ public class MoviesFragment extends BaseFragment implements MoviesView {
         listMovies.setAdapter(new MoviesAdapter(movieList, new MoviesAdapter.OnMovieClickListener() {
             @Override
             public void onDetailClick(Movie movie) {
-                Bundle data = Mapper.movieToBundle(movie);
+                Bundle data = new Bundle();
+                data.putParcelable("movie", movie);
+
                 Intent detailIntent = new Intent(getActivity(), DetailActivity.class);
 
                 detailIntent.putExtras(data);
@@ -92,6 +93,7 @@ public class MoviesFragment extends BaseFragment implements MoviesView {
 
             @Override
             public void onShareclick(Movie movie) {
+                // TODO WOI! KUDU ISOK NGESHARE HAYO
                 getParentView().showMessage("Share " + movie.getTitle());
             }
         }));

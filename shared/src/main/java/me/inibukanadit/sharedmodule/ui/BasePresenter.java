@@ -10,7 +10,7 @@ public abstract class BasePresenter<V extends MvpView> implements MvpPresenter<V
     private final MovieDbApi mMovieDbApi;
     private final CompositeDisposable mCompositeDisposable;
 
-    public BasePresenter(CompositeDisposable mCompositeDisposable) {
+    protected BasePresenter(CompositeDisposable mCompositeDisposable) {
         this.mMovieDbApi = null;
         this.mCompositeDisposable = mCompositeDisposable;
     }

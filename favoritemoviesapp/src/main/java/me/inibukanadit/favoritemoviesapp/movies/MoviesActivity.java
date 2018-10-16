@@ -21,7 +21,7 @@ import me.inibukanadit.sharedmodule.ui.BaseActivity;
 
 public class MoviesActivity extends BaseActivity implements MoviesView {
 
-    private CompositeDisposable mCompositeDisposable = new CompositeDisposable();
+    private final CompositeDisposable mCompositeDisposable = new CompositeDisposable();
     private MoviesPresenter mPresenter;
 
     @BindView(R.id.rv_movies)

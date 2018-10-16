@@ -6,7 +6,7 @@ import java.util.List;
 
 import me.inibukanadit.sharedmodule.remote.model.Movie;
 
-public class MovieResponse {
+class MovieResponse {
 
     @SerializedName("page")
     int page;

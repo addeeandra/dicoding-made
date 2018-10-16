@@ -1,4 +1,4 @@
-package me.inibukanadit.favoritemoviesapp.movies;
+package me.inibukanadit.made.movies;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package me.inibukanadit.made.ui.main;
+package me.inibukanadit.made.main;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,9 +17,9 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import me.inibukanadit.made.R;
-import me.inibukanadit.made.ui.base.BaseActivity;
-import me.inibukanadit.made.ui.movies.MoviesFragment;
-import me.inibukanadit.made.ui.search.SearchActivity;
+import me.inibukanadit.made.movies.MoviesFragment;
+import me.inibukanadit.made.search.SearchActivity;
+import me.inibukanadit.sharedmodule.ui.BaseActivity;
 
 public class MainActivity extends BaseActivity implements MainView {
 

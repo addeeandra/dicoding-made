@@ -21,7 +21,7 @@ import me.inibukanadit.sharedmodule.remote.model.Movie;
 
 public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewHolder> {
 
-    private List<Movie> mMovies;
+    private final List<Movie> mMovies;
     private OnMovieClickListener mOnMovieClickListener;
 
     public MoviesAdapter(List<Movie> movies, OnMovieClickListener onMovieClickListener) {
@@ -67,7 +67,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
         @BindView(R.id.btn_movie_share)
         Button btnShare;
 
-        public MovieViewHolder(View itemView) {
+        MovieViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }

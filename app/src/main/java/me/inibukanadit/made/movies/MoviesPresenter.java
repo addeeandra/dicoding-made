@@ -1,4 +1,4 @@
-package me.inibukanadit.made.ui.movies;
+package me.inibukanadit.made.movies;
 
 import java.util.List;
 
@@ -7,9 +7,9 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
-import me.inibukanadit.made.data.remote.MovieDbApi;
-import me.inibukanadit.made.data.remote.model.Movie;
-import me.inibukanadit.made.ui.base.BasePresenter;
+import me.inibukanadit.sharedmodule.remote.MovieDbApi;
+import me.inibukanadit.sharedmodule.remote.model.Movie;
+import me.inibukanadit.sharedmodule.ui.BasePresenter;
 
 public class MoviesPresenter extends BasePresenter<MoviesView> {
 
@@ -36,13 +36,13 @@ public class MoviesPresenter extends BasePresenter<MoviesView> {
         return observable.observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<List<Movie>>() {
                     @Override
-                    public void accept(List<Movie> movies) throws Exception {
+                    public void accept(List<Movie> movies) {
                         getView().showMovies(movies);
                         getView().hideLoading();
                     }
                 }, new Consumer<Throwable>() {
                     @Override
-                    public void accept(Throwable throwable) throws Exception {
+                    public void accept(Throwable throwable) {
                         getView().showPlaceholder();
                         getView().hideLoading();
                     }

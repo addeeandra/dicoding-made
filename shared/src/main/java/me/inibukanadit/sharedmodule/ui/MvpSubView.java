@@ -2,7 +2,7 @@ package me.inibukanadit.sharedmodule.ui;
 
 import android.support.annotation.StringRes;
 
-public interface MvpSubView {
+interface MvpSubView {
 
     void onError(@StringRes int message);
 

@@ -1,4 +1,4 @@
-package me.inibukanadit.made.ui.detail;
+package me.inibukanadit.made.detail;
 
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -13,14 +13,13 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.reactivex.disposables.CompositeDisposable;
 import me.inibukanadit.made.R;
-import me.inibukanadit.made.data.remote.MovieDbApi;
-import me.inibukanadit.made.data.remote.model.Movie;
-import me.inibukanadit.made.ui.base.BaseActivity;
-import me.inibukanadit.made.utils.Mapper;
+import me.inibukanadit.sharedmodule.remote.MovieDbApi;
+import me.inibukanadit.sharedmodule.remote.model.Movie;
+import me.inibukanadit.sharedmodule.ui.BaseActivity;
 
 public class DetailActivity extends BaseActivity implements DetailView {
 
-    private CompositeDisposable mCompositeDisposable = new CompositeDisposable();
+    private final CompositeDisposable mCompositeDisposable = new CompositeDisposable();
     private MovieDbApi mMovieDbApi = new MovieDbApi();
     private DetailPresenter mPresenter;
 
@@ -64,7 +63,7 @@ public class DetailActivity extends BaseActivity implements DetailView {
 
         Bundle data = getIntent().getExtras();
         if (data != null) {
-            Movie movie = Mapper.bundleToMovie(data);
+            Movie movie = data.getParcelable("movie");
             mPresenter.onMoviePassed(movie);
         }
     }

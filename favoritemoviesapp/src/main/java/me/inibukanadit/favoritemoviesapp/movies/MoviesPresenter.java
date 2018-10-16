@@ -6,23 +6,18 @@ import android.database.Cursor;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.reactivex.Observable;
 import io.reactivex.Single;
-import io.reactivex.SingleSource;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
-import me.inibukanadit.sharedmodule.db.helper.FavoriteHelper;
-import me.inibukanadit.sharedmodule.remote.MovieDbApi;
 import me.inibukanadit.sharedmodule.remote.model.Movie;
 import me.inibukanadit.sharedmodule.ui.BasePresenter;
 
 import static me.inibukanadit.sharedmodule.db.DatabaseContract.CONTENT_URI;
 
-public class MoviesPresenter extends BasePresenter<MoviesView> {
+class MoviesPresenter extends BasePresenter<MoviesView> {
 
     private final ContentResolver mContentResolver;
 
@@ -38,7 +33,7 @@ public class MoviesPresenter extends BasePresenter<MoviesView> {
         getCompositeDisposable().add(Single.just(1)
                 .map(new Function<Integer, Cursor>() {
                     @Override
-                    public Cursor apply(Integer integer) throws Exception {
+                    public Cursor apply(Integer integer) {
                         return mContentResolver.query(CONTENT_URI, null, null, null, null);
                     }
                 })
@@ -46,7 +41,7 @@ public class MoviesPresenter extends BasePresenter<MoviesView> {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<Cursor>() {
                     @Override
-                    public void accept(Cursor cursor) throws Exception {
+                    public void accept(Cursor cursor) {
                         List<Movie> movies = new ArrayList<>();
 
                         if (cursor.moveToFirst()) {
@@ -67,7 +62,7 @@ public class MoviesPresenter extends BasePresenter<MoviesView> {
                     }
                 }, new Consumer<Throwable>() {
                     @Override
-                    public void accept(Throwable throwable) throws Exception {
+                    public void accept(Throwable throwable) {
                         getView().showPlaceholder();
                         getView().hideLoading();
                     }
