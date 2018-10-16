@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Katalog Film</string>
+    <string name="app_name">Moview - Katalog</string>
     <string name="hint_no_movies">Film tidak tersedia</string>
     <string name="text_vote">Vote</string>
     <string name="text_popularity">Popularitas</string>

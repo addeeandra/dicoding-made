@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Movies Catalogue</string>
+    <string name="app_name">Moview - Catalogue</string>
     <string name="hint_no_movies">Movies not available</string>
     <string name="text_vote">Vote</string>
     <string name="text_popularity">Popularity</string>

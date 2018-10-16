@@ -84,8 +84,6 @@ public class MoviesFragment extends BaseFragment implements MoviesView {
 
     @Override
     public void showMovies(final List<Movie> movieList) {
-        swipeRefresh.setRefreshing(false);
-
         listMovies.setVisibility(View.VISIBLE);
         listMovies.setLayoutManager(new LinearLayoutManager(getActivity()));
         listMovies.setAdapter(new MoviesAdapter(movieList, new MoviesAdapter.OnMovieClickListener() {
@@ -117,6 +115,7 @@ public class MoviesFragment extends BaseFragment implements MoviesView {
 
     @Override
     public void hideLoading() {
+        swipeRefresh.setRefreshing(false);
         clpMovies.hide();
     }
 

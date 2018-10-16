@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Favorite Movies</string>
+    <string name="app_name">Moview - Favorites</string>
     <string name="favorite">Favorite</string>
     <string name="change_language_settings">Change Language Settings</string>
 </resources>

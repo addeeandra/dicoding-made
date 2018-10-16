@@ -18,7 +18,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     "%s TEXT NOT NULL," +
                     "%s DOUBLE DEFAULT 0," +
                     "%s DOUBLE DEFAULT 0," +
-                    "%s TEXT NOT NULL",
+                    "%s TEXT NOT NULL" +
+                    ")",
             DatabaseContract.TABLE_FAVORITES,
             DatabaseContract.FavoritesColumn._ID,
             DatabaseContract.FavoritesColumn.TITLE,
