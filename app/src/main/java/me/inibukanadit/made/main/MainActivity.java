@@ -35,6 +35,8 @@ public class MainActivity extends BaseActivity implements MainView {
     @BindView(R.id.vp_main)
     ViewPager vpMain;
 
+    private static final int RC_LANGUAGE = 22;
+
     private MainPagerAdapter mPageAdapter;
     private List<Fragment> mPages;
     private List<String> mTitles;
@@ -101,9 +103,18 @@ public class MainActivity extends BaseActivity implements MainView {
             return true;
         } else if (item.getItemId() == R.id.action_change_language) {
             Intent settingIntent = new Intent(Settings.ACTION_LOCALE_SETTINGS);
-            startActivity(settingIntent);
+            startActivityForResult(settingIntent, RC_LANGUAGE);
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (requestCode == RC_LANGUAGE) {
+            Intent restartIntent = new Intent(this, MainActivity.class);
+            restartIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(restartIntent);
+        }
     }
 
     @Override
