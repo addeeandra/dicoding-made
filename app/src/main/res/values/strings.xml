@@ -13,6 +13,6 @@
     <string name="hint_search_movies">Search movies ..</string>
     <string name="change_language_settings">Change Language Settings</string>
 
-    <string name="widget_text">Favorite Movies</string>
+    <string name="widget_text">My Favorite Movies</string>
     <string name="empty_text">No Favorites Movies</string>
 </resources>

@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Binder;
 import android.os.Bundle;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
@@ -39,22 +40,14 @@ public class FavoritesStackRemoteView implements RemoteViewsService.RemoteViewsF
 
     @Override
     public void onCreate() {
-        ContentResolver contentResolver = mContext.getContentResolver();
-        Cursor cursor = contentResolver.query(CONTENT_URI, null, null, null, null);
-
-        if (cursor != null && cursor.moveToFirst()) {
-            do {
-                String poster = cursor.getString(cursor.getColumnIndex(DatabaseContract.FavoritesColumn.POSTER));
-                mFavoriteMovies.add(poster);
-            } while (cursor.moveToNext());
-
-            cursor.close();
-        }
+        getFavoriteMovies();
     }
 
     @Override
     public void onDataSetChanged() {
-
+        final long identityToken = Binder.clearCallingIdentity();
+        getFavoriteMovies();
+        Binder.restoreCallingIdentity(identityToken);
     }
 
     @Override
@@ -108,5 +101,19 @@ public class FavoritesStackRemoteView implements RemoteViewsService.RemoteViewsF
     @Override
     public boolean hasStableIds() {
         return false;
+    }
+
+    private void getFavoriteMovies() {
+        ContentResolver contentResolver = mContext.getContentResolver();
+        Cursor cursor = contentResolver.query(CONTENT_URI, null, null, null, null);
+
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                String poster = cursor.getString(cursor.getColumnIndex(DatabaseContract.FavoritesColumn.POSTER));
+                mFavoriteMovies.add(poster);
+            } while (cursor.moveToNext());
+
+            cursor.close();
+        }
     }
 }
