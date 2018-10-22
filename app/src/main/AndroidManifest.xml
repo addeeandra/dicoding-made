@@ -21,14 +21,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-
         <activity android:name=".main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".search.SearchActivity"
             android:parentActivityName=".main.MainActivity">
@@ -36,18 +35,30 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".main.MainActivity" />
         </activity>
-
-        <activity android:name=".favorites.FavoritesFragment" />
         <activity android:name=".detail.DetailActivity" />
 
         <provider
             android:name="me.inibukanadit.sharedmodule.db.helper.FavoriteProvider"
             android:authorities="me.inibukanadit.made.moviesapp"
+            android:enabled="true"
             android:exported="true"
             android:readPermission="me.inibukanadit.made.moviesapp.READ_DATABASE"
             android:writePermission="me.inibukanadit.made.moviesapp.WRITE_DATABASE" />
 
-    </application>
+        <receiver android:name=".widget.FavoritesWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
 
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/favorites_widget_info" />
+        </receiver>
+
+        <service
+            android:name=".widget.FavoritesWidgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
+
+    </application>
 
 </manifest>

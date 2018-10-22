@@ -12,4 +12,7 @@
     <string name="favorite">Favorit</string>
     <string name="hint_search_movies">Cari judul film ..</string>
     <string name="change_language_settings">Pengaturan Bahasa</string>
+
+    <string name="widget_text">Film Favorit</string>
+    <string name="empty_text">Tidak ada film favorite</string>
 </resources>
