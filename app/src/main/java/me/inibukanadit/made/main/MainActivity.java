@@ -55,9 +55,9 @@ public class MainActivity extends BaseActivity implements MainView {
         setSupportActionBar(toolbar);
 
         if (savedInstanceState == null) {
-            mReminderReceiver = new ReminderReceiver();
-            mReminderPreference = new ReminderPreference(getApplicationContext());
-
+            /**
+             * SETUP FRAGMENTS
+             */
             mPages = new ArrayList<>();
 
             FavoritesFragment favoritesFragment = new FavoritesFragment();
@@ -95,6 +95,12 @@ public class MainActivity extends BaseActivity implements MainView {
 
             vpMain.setCurrentItem(1);
 
+            /**
+             * SETUP REMINDER
+             */
+            mReminderReceiver = new ReminderReceiver();
+            mReminderPreference = new ReminderPreference(getApplicationContext());
+
             setReminderDaily(mReminderPreference.isReminderDailyActive());
             setReminderRelease(mReminderPreference.isReminderReleaseActive());
         }
@@ -103,7 +109,6 @@ public class MainActivity extends BaseActivity implements MainView {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
-
         return true;
     }
 
@@ -148,6 +153,7 @@ public class MainActivity extends BaseActivity implements MainView {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        // ENSURE THAT ACTIVITY RESTARTED WHEN GET RESULT FROM LANGUAGE SETTINGS TO REFRESH
         if (requestCode == RC_LANGUAGE) {
             Intent restartIntent = new Intent(this, MainActivity.class);
             restartIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

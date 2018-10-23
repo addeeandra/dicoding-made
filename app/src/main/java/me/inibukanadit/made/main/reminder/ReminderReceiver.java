@@ -146,10 +146,18 @@ public class ReminderReceiver extends BroadcastReceiver {
         intent.putExtra(EXTRA_MESSAGE, message);
         intent.putExtra(EXTRA_TYPE, type);
 
-        String[] times = type.equalsIgnoreCase(TYPE_RELEASE) ? "15:13".split(":") : "15:12".split(":");
+        String[] times = type.equalsIgnoreCase(TYPE_RELEASE) ? "08:00".split(":") : "07:00".split(":");
         int requestCode = type.equalsIgnoreCase(TYPE_RELEASE) ? REMINDER_ID_RELEASE : REMINDER_ID_DAILY;
 
         Calendar calendar = Calendar.getInstance();
+
+        int timesValue = Integer.parseInt(times[0]) * 60 + Integer.parseInt(times[1]);
+        int currentTimesValue = calendar.get(Calendar.HOUR_OF_DAY) * 60 + calendar.get(Calendar.MINUTE);
+
+        if (currentTimesValue >= timesValue) {
+            calendar.add(Calendar.HOUR_OF_DAY, 24);
+        }
+
         calendar.set(Calendar.HOUR_OF_DAY, Integer.parseInt(times[0]));
         calendar.set(Calendar.MINUTE, Integer.parseInt(times[1]));
         calendar.set(Calendar.SECOND, 0);
