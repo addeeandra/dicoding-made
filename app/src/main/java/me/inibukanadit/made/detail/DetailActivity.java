@@ -1,5 +1,6 @@
 package me.inibukanadit.made.detail;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -66,6 +67,11 @@ public class DetailActivity extends BaseActivity implements DetailView {
             Movie movie = data.getParcelable("movie");
             mPresenter.onMoviePassed(movie);
         }
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
     }
 
     @Override

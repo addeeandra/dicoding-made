@@ -1,5 +1,6 @@
 package me.inibukanadit.made.search;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
@@ -62,6 +63,11 @@ public class SearchActivity extends BaseActivity implements SearchView {
         });
 
         mPresenter.onAttach(this);
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
     }
 
     @Override
