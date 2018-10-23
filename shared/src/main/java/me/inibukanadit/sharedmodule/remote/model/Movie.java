@@ -36,7 +36,8 @@ public class Movie implements Parcelable {
     @SerializedName("popularity")
     private Double popularityRate;
 
-    public Movie() { }
+    public Movie() {
+    }
 
     public Movie(long id, String title, String overview, String releaseDate, String poster, String backdrop, Double voteAverageRate, Double popularityRate) {
         this.id = id;
@@ -115,9 +116,7 @@ public class Movie implements Parcelable {
             sdf.applyPattern("E, dd MMM, yyyy");
 
             return sdf.format(fromDateObj);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        } catch (ParseException e) { /* IGNORE */ }
 
         return fromDate;
     }
@@ -148,6 +147,10 @@ public class Movie implements Parcelable {
 
     public String getReleaseDate() {
         return formatDate(releaseDate);
+    }
+
+    public String getRawReleaseDate() {
+        return releaseDate;
     }
 
     public void setReleaseDate(String releaseDate) {

@@ -12,6 +12,10 @@
     <string name="favorite">Favorit</string>
     <string name="hint_search_movies">Cari judul film ..</string>
     <string name="change_language_settings">Pengaturan Bahasa</string>
+    <string name="turn_on_daily_reminder">Nyalakan Daily Reminder</string>
+    <string name="turn_off_daily_reminder">Matikan Daily Reminder</string>
+    <string name="turn_on_release_reminder">Nyalakan Release Reminder</string>
+    <string name="turn_off_release_reminder">Matikan Release Reminder</string>
 
     <string name="widget_text">Film Favorit</string>
     <string name="empty_text">Tidak ada film favorite</string>

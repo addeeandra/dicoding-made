@@ -20,6 +20,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import me.inibukanadit.made.R;
 import me.inibukanadit.made.favorites.FavoritesFragment;
+import me.inibukanadit.made.main.reminder.ReminderPreference;
+import me.inibukanadit.made.main.reminder.ReminderReceiver;
 import me.inibukanadit.made.movies.MoviesFragment;
 import me.inibukanadit.made.search.SearchActivity;
 import me.inibukanadit.sharedmodule.ui.BaseActivity;
@@ -37,6 +39,9 @@ public class MainActivity extends BaseActivity implements MainView {
 
     private static final int RC_LANGUAGE = 22;
 
+    private ReminderReceiver mReminderReceiver;
+    private ReminderPreference mReminderPreference;
+
     private MainPagerAdapter mPageAdapter;
     private List<Fragment> mPages;
     private List<String> mTitles;
@@ -50,6 +55,9 @@ public class MainActivity extends BaseActivity implements MainView {
         setSupportActionBar(toolbar);
 
         if (savedInstanceState == null) {
+            mReminderReceiver = new ReminderReceiver();
+            mReminderPreference = new ReminderPreference(getApplicationContext());
+
             mPages = new ArrayList<>();
 
             FavoritesFragment favoritesFragment = new FavoritesFragment();
@@ -86,24 +94,54 @@ public class MainActivity extends BaseActivity implements MainView {
             favoriteTab.setLayoutParams(lParams);
 
             vpMain.setCurrentItem(1);
+
+            setReminderDaily(mReminderPreference.isReminderDailyActive());
+            setReminderRelease(mReminderPreference.isReminderReleaseActive());
         }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+
+        MenuItem menuDailyReminder = menu.findItem(R.id.action_toggle_daily_reminder);
+        menuDailyReminder.setTitle(
+                mReminderPreference.isReminderDailyActive() ?
+                        R.string.turn_off_daily_reminder : R.string.turn_on_daily_reminder);
+
+        MenuItem menuReleaseReminder = menu.findItem(R.id.action_toggle_release_reminder);
+        menuReleaseReminder.setTitle(
+                mReminderPreference.isReminderReleaseActive() ?
+                        R.string.turn_off_release_reminder : R.string.turn_on_release_reminder);
+
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.action_search) {
-            Intent searchIntent = new Intent(this, SearchActivity.class);
-            startActivity(searchIntent);
-            return true;
-        } else if (item.getItemId() == R.id.action_change_language) {
-            Intent settingIntent = new Intent(Settings.ACTION_LOCALE_SETTINGS);
-            startActivityForResult(settingIntent, RC_LANGUAGE);
+        switch (item.getItemId()) {
+            case R.id.action_search:
+                Intent searchIntent = new Intent(this, SearchActivity.class);
+                startActivity(searchIntent);
+                return true;
+            case R.id.action_change_language:
+                Intent languageIntent = new Intent(Settings.ACTION_LOCALE_SETTINGS);
+                startActivityForResult(languageIntent, RC_LANGUAGE);
+                return true;
+            case R.id.action_toggle_daily_reminder:
+                boolean isActiveDaily = mReminderPreference.toggleReminderDaily();
+                setReminderDaily(isActiveDaily);
+                return true;
+            case R.id.action_toggle_release_reminder:
+                boolean isActiveRelease = mReminderPreference.toggleReminderRelease();
+                setReminderRelease(isActiveRelease);
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -125,6 +163,32 @@ public class MainActivity extends BaseActivity implements MainView {
     @Override
     public List<String> getTitles() {
         return mTitles;
+    }
+
+    private void setReminderDaily(boolean active) {
+        if (mReminderPreference.isReminderDailyActive() != active)
+            mReminderPreference.setReminderDaily(active);
+
+        if (active) {
+            mReminderReceiver.setRepeatingReminder(this, ReminderReceiver.TYPE_DAILY, "We miss you :(");
+        } else {
+            mReminderReceiver.cancelReminder(this, ReminderReceiver.TYPE_DAILY);
+        }
+
+        invalidateOptionsMenu();
+    }
+
+    private void setReminderRelease(boolean active) {
+        if (mReminderPreference.isReminderReleaseActive() != active)
+            mReminderPreference.setReminderRelease(active);
+
+        if (active) {
+            mReminderReceiver.setRepeatingReminder(this, ReminderReceiver.TYPE_RELEASE, "New movie release!");
+        } else {
+            mReminderReceiver.cancelReminder(this, ReminderReceiver.TYPE_RELEASE);
+        }
+
+        invalidateOptionsMenu();
     }
 
 }

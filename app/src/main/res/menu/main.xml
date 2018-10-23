@@ -13,4 +13,14 @@
         android:title="@string/change_language_settings"
         app:showAsAction="never" />
 
+    <item
+        android:id="@+id/action_toggle_daily_reminder"
+        android:title="@string/turn_off_daily_reminder"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_toggle_release_reminder"
+        android:title="@string/turn_off_release_reminder"
+        app:showAsAction="never" />
+
 </menu>
