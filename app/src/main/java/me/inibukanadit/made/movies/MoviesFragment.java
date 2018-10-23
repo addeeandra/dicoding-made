@@ -28,7 +28,7 @@ import me.inibukanadit.sharedmodule.ui.BaseFragment;
 public class MoviesFragment extends BaseFragment implements MoviesView {
 
     public static final int FETCH_UPCOMING = 1;
-    public static int FETCH_NOW_PLAYING = 2;
+    public static final int FETCH_NOW_PLAYING = 2;
 
     private MovieDbApi mApi = new MovieDbApi();
     private CompositeDisposable mCompositeDisposable = new CompositeDisposable();
@@ -51,6 +51,9 @@ public class MoviesFragment extends BaseFragment implements MoviesView {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        if (savedInstanceState != null) {
+            mFetchType = savedInstanceState.getInt("FETCH_TYPE", 0);
+        }
         return inflater.inflate(R.layout.fragment_movies, container, false);
     }
 
@@ -80,6 +83,12 @@ public class MoviesFragment extends BaseFragment implements MoviesView {
     public void onDetach() {
         super.onDetach();
         mPresenter.onDetach();
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putInt("FETCH_TYPE", mFetchType);
+        super.onSaveInstanceState(outState);
     }
 
     @Override

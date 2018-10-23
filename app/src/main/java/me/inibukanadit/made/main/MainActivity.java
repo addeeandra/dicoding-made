@@ -1,6 +1,7 @@
 package me.inibukanadit.made.main;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
@@ -54,56 +55,60 @@ public class MainActivity extends BaseActivity implements MainView {
 
         setSupportActionBar(toolbar);
 
-        if (savedInstanceState == null) {
-            /**
-             * SETUP FRAGMENTS
-             */
-            mPages = new ArrayList<>();
+        /**
+         * SETUP FRAGMENTS
+         */
+        mPages = new ArrayList<>();
 
-            FavoritesFragment favoritesFragment = new FavoritesFragment();
-            favoritesFragment.setParentView(this);
-            mPages.add(favoritesFragment);
+        FavoritesFragment favoritesFragment = new FavoritesFragment();
+        favoritesFragment.setParentView(this);
+        mPages.add(favoritesFragment);
 
-            MoviesFragment nowPlayingFragment = new MoviesFragment();
-            nowPlayingFragment.setParentView(this);
-            nowPlayingFragment.setFetchType(MoviesFragment.FETCH_NOW_PLAYING);
-            mPages.add(nowPlayingFragment);
+        MoviesFragment nowPlayingFragment = new MoviesFragment();
+        nowPlayingFragment.setParentView(this);
+        nowPlayingFragment.setFetchType(MoviesFragment.FETCH_NOW_PLAYING);
+        mPages.add(nowPlayingFragment);
 
-            MoviesFragment upcomingFragment = new MoviesFragment();
-            upcomingFragment.setParentView(this);
-            upcomingFragment.setFetchType(MoviesFragment.FETCH_UPCOMING);
-            mPages.add(upcomingFragment);
+        MoviesFragment upcomingFragment = new MoviesFragment();
+        upcomingFragment.setParentView(this);
+        upcomingFragment.setFetchType(MoviesFragment.FETCH_UPCOMING);
+        mPages.add(upcomingFragment);
 
-            mTitles = new ArrayList<>();
-            mTitles.add("");
-            mTitles.add(getString(R.string.now_playing));
-            mTitles.add(getString(R.string.upcoming));
+        mTitles = new ArrayList<>();
+        mTitles.add("");
+        mTitles.add(getString(R.string.now_playing));
+        mTitles.add(getString(R.string.upcoming));
 
-            mPageAdapter = new MainPagerAdapter(getSupportFragmentManager(), getPages(), getTitles());
-            vpMain.setAdapter(mPageAdapter);
-            tabMain.setupWithViewPager(vpMain);
+        mPageAdapter = new MainPagerAdapter(getSupportFragmentManager(), getPages(), getTitles());
+        vpMain.setOffscreenPageLimit(3);
+        vpMain.setAdapter(mPageAdapter);
+        tabMain.setupWithViewPager(vpMain);
 
-            int tabFavIndex = 0;
-            View favoriteTab = ((LinearLayout) tabMain.getChildAt(0)).getChildAt(tabFavIndex);
-            LinearLayout.LayoutParams lParams = (LinearLayout.LayoutParams) favoriteTab.getLayoutParams();
+        int tabFavIndex = 0;
+        View favoriteTab = ((LinearLayout) tabMain.getChildAt(0)).getChildAt(tabFavIndex);
+        LinearLayout.LayoutParams lParams = (LinearLayout.LayoutParams) favoriteTab.getLayoutParams();
 
-            tabMain.getTabAt(tabFavIndex).setIcon(R.drawable.ic_star_filled);
+        tabMain.getTabAt(tabFavIndex).setIcon(R.drawable.ic_star_filled);
 
-            lParams.weight = 0;
-            lParams.width = LinearLayout.LayoutParams.WRAP_CONTENT;
-            favoriteTab.setLayoutParams(lParams);
+        lParams.weight = 0;
+        lParams.width = LinearLayout.LayoutParams.WRAP_CONTENT;
+        favoriteTab.setLayoutParams(lParams);
 
-            vpMain.setCurrentItem(1);
+        vpMain.setCurrentItem(1);
 
-            /**
-             * SETUP REMINDER
-             */
-            mReminderReceiver = new ReminderReceiver();
-            mReminderPreference = new ReminderPreference(getApplicationContext());
+        /**
+         * SETUP REMINDER
+         */
+        mReminderReceiver = new ReminderReceiver();
+        mReminderPreference = new ReminderPreference(getApplicationContext());
 
-            setReminderDaily(mReminderPreference.isReminderDailyActive());
-            setReminderRelease(mReminderPreference.isReminderReleaseActive());
-        }
+        setReminderDaily(mReminderPreference.isReminderDailyActive());
+        setReminderRelease(mReminderPreference.isReminderReleaseActive());
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
     }
 
     @Override
